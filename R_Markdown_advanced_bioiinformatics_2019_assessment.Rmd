@@ -1,0 +1,123 @@
+---
+title: "Advanced Bioinformatics 2019 Assessment"
+author: "M2109262"
+date: '2022-04-26'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+```
+
+
+GitHub repository- https://github.com/k21137876ZacharyWhite/Advanced-Bioinformatics-2019-assessment.git
+
+###Task_1
+```{r}
+sum(5:55)
+```
+###Task_2
+```{r}
+sumfun <- function(n) {sum(5:n)}
+```
+
+```{r}
+sumfun(10)
+```
+When n=10 sumfun produces 45
+```{r}
+sumfun(20)
+```
+When n=20 sumfun produces 200
+```{r}
+sumfun(100)
+```
+When n=100 sumfun produces 5040
+
+
+
+results of the sumfun()
+
+n-value | Product
+~~~~~~~ | ~~~~~~
+   10   |  45
+   20   |  200
+   100  |  5040
+
+
+###Task_3
+```{r}
+fibonacci.series <- matrix( , nrow = 12, ncol = 1)
+i <- 1
+for(j in 1:nrow(fibonacci.series)){
+    fibonacci.series[j,] <- i
+    print(i)
+    ifelse(j==1, 
+         i <- 1,
+         i <- fibonacci.series[j,] + fibonacci.series[j-1,])
+  }
+```
+
+###Task_4
+```{r}
+library("ggplot2")
+
+
+ggplot(data = mtcars, aes(x= as.factor(gear), y= mpg)) + geom_boxplot(aes(fill= as.factor(gear))) + 
+  scale_x_discrete("No. of Gears") + 
+  scale_y_continuous("Miles per gallon (MPG)") + 
+  ggtitle(" Box plot of MPG as function of number of gears")
+
+```
+
+###Task-5
+```{r}
+y <- cars $dist; x <- cars $speed; 
+model <- lm(formula = "y ~ x")
+summary(model)
+```
+Answers to Task-5
+Slope= 3.9324
+Intercept= -17.579
+standard errors= 6.7584,0.4155
+
+###Task-6
+```{r}
+library(ggplot2) 
+ggplot_1.0 <- ggplot(data = cars, aes(x= speed, y=dist)) + geom_point() + geom_smooth(method = "lm",formula = "y ~ x")
+ggplot_1.1 <- ggplot_1.0 + ggtitle ("Relationship between speed and distance")+ xlab("Speed (MPH)")+ ylab("Distance (feet)")
+ggplot_1.1
+```
+
+###Task-7.1
+```{r}
+quad.reg <- lm(dist ~ speed + I(speed^2), data=cars)
+quad.reg$coefficients
+```
+Assigning variables
+
+```{r}
+cars$speed_ft_Sec <- (cars$speed/3600)*5280 
+quad.reg2 <- lm(dist ~ 0 + speed_ft_Sec + I(speed_ft_Sec^2), data=cars)
+```
+conversion of miles per hour to feet per second for easier interpretation.
+
+obtaining the results of the proportional values of distance vs  braking 
+
+###Task-7.2
+```{r}
+ggplot(data = cars, aes(x = speed_ft_Sec, y = dist)) + 
+  geom_point(color = "red", size = 1.0) + 
+  geom_smooth(method = "lm", formula = "y ~ 0 + x + I(x^2)",  color="blue", fullrange='TRUE') +
+#  geom_point(data = cars.cp$brake.dist)
+  labs(
+    title = "Time Taken to Break",  
+    y = "Breaking Distance", 
+    x = "Speed (ft/Second)") +
+  theme(plot.title = element_text(hjust =  0.5))
+```
+Results appear reasonable as both p and r values are both significant. and logically the time taken co incides with current estimates of the average human reaction time.
