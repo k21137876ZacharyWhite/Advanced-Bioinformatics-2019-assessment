@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 
 ```
-
+url- https://rpubs.com/m2109262/907403
 
 GitHub repository- https://github.com/k21137876ZacharyWhite/Advanced-Bioinformatics-2019-assessment.git
 
@@ -40,13 +40,18 @@ When n=100 sumfun produces 5040
 
 
 
-results of the sumfun()
+**sumfun() products**
 
-n-value | Product
-~~~~~~~ | ~~~~~~
-   10   |  45
-   20   |  200
-   100  |  5040
+Value of n | product
+------- | ---------
+10    |  45
+20    |  200
+100   |  5040
+
+
+
+
+
 
 
 ###Task_3
@@ -120,4 +125,6 @@ ggplot(data = cars, aes(x = speed_ft_Sec, y = dist)) +
     x = "Speed (ft/Second)") +
   theme(plot.title = element_text(hjust =  0.5))
 ```
+
+
 Results appear reasonable as both p and r values are both significant. and logically the time taken co incides with current estimates of the average human reaction time.
